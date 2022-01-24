@@ -35,11 +35,13 @@ gem 'gravatar_image_tag'
 
 gem 'guard'
 
- gem 'guard-rspec', require: false
+gem 'guard-rspec', require: false
 
- gem 'faker'
+gem 'faker'
 
- gem 'simple_form'
+gem 'simple_form'
+
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
