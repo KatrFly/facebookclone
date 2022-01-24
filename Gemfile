@@ -31,6 +31,16 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'capybara'
 gem 'webdrivers', '~> 5.0', require: false
 
+gem 'gravatar_image_tag'
+
+gem 'guard'
+
+ gem 'guard-rspec', require: false
+
+ gem 'faker'
+
+ gem 'simple_form'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
