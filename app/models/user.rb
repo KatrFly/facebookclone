@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
   # skip_before_action :authenticate_user!, only: [:new, :create]
 
   has_many :posts
