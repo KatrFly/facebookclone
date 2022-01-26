@@ -22,13 +22,10 @@
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
-        <% post.comments.each do |comment| %>
-          <td><%= comment.user.username %></td>
-          <td><%= comment.text %></td>
-        <% end%>
-         <% post.likes.each do |like| %>
-          <td><%= like.user.username %></td>
-        <% end%>
+        <td><%= "#{post.comments.count} comments"  %></td>
+        <td><%= "#{post.likes.count} likes" %></td>
+        <td><%= link_to 'Comment', comments_path, method: :post %>
+        <td><%= link_to 'Like', likes_path(post_id: post.id ), method: :post %>
       </tr>
     <% end %>
   </tbody>
