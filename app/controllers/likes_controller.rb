@@ -7,6 +7,11 @@ class LikesController < ApplicationController
     render "posts/index"
   end
 
+  def index
+    @post = Post.find(likes_params[:post_id])
+    @likes = @post.likes
+  end
+
   private
   
   def likes_params

@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Likes</h1>
+
+<% @likes.each do |like| %>
+  <%= like.user.username %><br>
+<% end %>
+
+<br>
+
+<%= link_to 'Back', root_path %>
