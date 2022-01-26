@@ -22,10 +22,12 @@
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
-        <td><%= "#{post.comments.count} comments"  %></td>
+        <td><%= link_to "#{post.comments.count} comments", comments_path(post_id: post.id) %></td>
         <td><%= link_to "#{post.likes.count} likes", likes_path(post_id: post.id) %></td>
         <td><%= link_to 'Comment', comments_path, method: :post %>
+      <% unless post.user_id == current_user.id %>
         <td><%= link_to 'Like', likes_path(post_id: post.id ), method: :post %>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
