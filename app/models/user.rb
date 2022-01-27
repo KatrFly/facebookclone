@@ -16,4 +16,12 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
 
+  def friends_include_user?(current_user, friend_id)
+    current_user.friends.each do |f|
+      friend_ids << f.id
+    end
+
+    return true if friend_ids.include?(friend_id) 
+  end
+
 end
