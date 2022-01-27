@@ -10,8 +10,10 @@ class FriendshipsController < ApplicationController
   end
 
   def index
-    @friendship = Friendship.find(friendship_params[:friendship_id])
-    @likes = @friendship.likes
+  end
+
+  def show
+
   end
 
   private

@@ -19,10 +19,9 @@
     <div id="navbarExample" class="navbar-menu">
       <div class="navbar-burger burger" data-target="navbarExample">
       <% if user_signed_in? %>
-        <span><%= link_to "#{current_user.received_friend_requests.count} friend requests", friend_requests_path %></span>
+        <span><%= link_to "#{current_user.received_friend_requests.count} friend requests", friend_requests_path %></span><br>
+        <span><%= link_to "#{current_user.all_friends.count} friends", friendships_path %><br>
       <% end %>
-        <span>Hello</span>
-        <span>Welcome</span>
       </div>
       <div class="navbar-end">
         <div class="field is-grouped">
