@@ -11,6 +11,11 @@ class FriendRequestsController < ApplicationController
     render "users/index"
   end
 
+  def index
+    @received_friend_requests = current_user.received_friend_requests
+    @sent_friend_requests = current_user.sent_friend_requests
+  end
+
   private
 
   def request_params
