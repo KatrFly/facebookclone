@@ -14,9 +14,20 @@ class LikesController < ApplicationController
     @likes = @post.likes
   end
 
+  def destroy
+    like = Like.find(destroy_params[:id])
+    like.destroy
+    @posts = Post.all
+    render "posts/index"
+  end
+
   private
   
   def likes_params
     params.permit(:_method, :post_id, :authenticity_token)
+  end
+
+  def destroy_params
+    params.permit(:_method, :id, :authenticity_token)
   end
 end

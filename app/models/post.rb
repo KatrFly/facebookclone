@@ -17,7 +17,8 @@ class Post < ApplicationRecord
       p user_ids
       p current_user_id
 
-      user_ids.include?(current_user_id)
+      return Like.find_by(user_id: current_user_id) if user_ids.include?(current_user_id)
+      false
     end
   end
 end

@@ -25,8 +25,12 @@
         <td><%= link_to "#{post.likes.count} likes", likes_path(post_id: post.id) %></td>
         <td><%= link_to "#{post.comments.count} comments", comments_path(post_id: post.id) %></td>
         <td><%= link_to 'Comment', comments_path, method: :post %>
-      <% unless post.user_id == current_user.id || post.like_already_exists?(current_user.id) %>
-        <td><%= link_to 'Like', likes_path(post_id: post.id ), method: :post %>
+      <% unless post.user_id == current_user.id %>
+        <% if @like = post.like_already_exists?(current_user.id) %>
+        <td><%= link_to 'Unlike', like_path(@like.id), method: :delete %>
+        <% else %>
+        <td><%= link_to 'Like', likes_path(post_id: post.id), method: :post %>
+        <% end %>
       <% end %>
       </tr>
     <% end %>
