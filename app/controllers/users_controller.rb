@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(user_params[:id])
+  end
+
+  private
+
+  def user_params
+    params.permit([:id])
   end
 end
