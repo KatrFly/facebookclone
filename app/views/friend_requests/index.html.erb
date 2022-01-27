@@ -1,6 +1,8 @@
 <h1> Friend Requests </h1>
 
-<% @received_friend_requests.each do |fr_rq| %>
-  <%= fr_rq.inviter.username %>
-  <%= link_to "Accept", friendship_path, method: :post %>
+<% unless @received_friend_requests.nil?  %>
+  <% @received_friend_requests.each do |fr_rq| %>
+    <%= fr_rq.inviter.username %>
+    <%= link_to "Accept", friendships_path(inviter_id: fr_rq.inviter.id, friend_request: fr_rq), method: :post %>
+  <% end %>
 <% end %>

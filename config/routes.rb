@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, only: [:index, :show]
 
-  resources :friend_requests, only: [:create, :index]
+  resources :friend_requests, only: [:create, :index, :destroy]
+
+  resources :friendships, only: [:create, :index]
 
   resources :comments
 

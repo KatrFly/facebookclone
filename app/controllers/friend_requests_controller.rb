@@ -16,6 +16,10 @@ class FriendRequestsController < ApplicationController
     @sent_friend_requests = current_user.sent_friend_requests
   end
 
+  def destroy
+    @friend_request.destroy
+  end
+
   private
 
   def request_params
