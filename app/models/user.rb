@@ -46,4 +46,14 @@ class User < ApplicationRecord
     friend_id
     return true if friend_ids.include?(friend_id) 
   end
+
+  def friend_request_send?(user_id, current_user)
+    @requests = FriendRequest.all 
+
+    @requests.map do |request|
+      return true if request.inviter_id == user_id && request.invitee_id == current_user.id
+      return true if request.invitee_id == user_id && request.inviter_id == current_user.id
+      return false
+    end
+  end 
 end

@@ -4,13 +4,24 @@ class CommentsController < ApplicationController
   end
   
   def create
-    @post = Posts.find(comment_params[:post_id])
-    @comment =     
+    @post = Post.find(create_params[:post_id])
+    @comment = @post.comments.build(user_id: current_user.id, text: create_params[:text])
+    @comment.save
+    @posts = Post.all
+    render "posts/index"
   end
 
+  def index
+    @post = Post.find(index_params[:post_id])
+    @comments = @post.comments
+  end
   private
 
-  def comment_params
-    params.require().permit(:post_id, :text)
+  def create_params
+    params.require(:comment).permit(:post_id, :text, :_method, :authenticity_token)
+  end
+
+  def index_params
+    params.permit(:post_id)
   end
 end
