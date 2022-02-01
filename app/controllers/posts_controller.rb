@@ -3,7 +3,9 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @user_id = current_user
+    @friends_ids = current_user.all_friends.select('id')
+    @posts_from_myself_and_friends = Post.where(user_id: @friends_ids)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -22,9 +24,11 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.build(post_params)
+    @user = current_user
 
     respond_to do |format|
       if @post.save
+        PostMailer.with(user: @user, post: @post).new_post.deliver_later
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
