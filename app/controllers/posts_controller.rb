@@ -3,9 +3,13 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @user_id = current_user
-    @friends_ids = current_user.all_friends.select('id')
-    @posts_from_myself_and_friends = Post.where(user_id: @friends_ids)
+    if user_signed_in?
+      @user_id = current_user
+      @friends_ids = current_user.all_friends.select
+      @posts_from_myself_and_friends = Post.where(user_id: @friends_ids)
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /posts/1 or /posts/1.json
